@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
-mongoose.connect('mongodb://localhost/gathr'); 
 var User = mongoose.Schema({
   local : {
   	name: String,
