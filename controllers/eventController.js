@@ -9,4 +9,16 @@ var eventGet = function(req, res) {
 	});
 }
 
+var eventIdGet = function(req, res) {
+	//console.log(req.params.id);
+	db.Event.findOne({id: req.params.id}, function(err, event) {
+	//console.log(events);
+	if (!event) {
+		res.json({"message": "Not found"});
+	}
+	res.json(event);
+	});
+}
+
 module.exports.eventGet = eventGet;
+module.exports.eventIdGet = eventIdGet;

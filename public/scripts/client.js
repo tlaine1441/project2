@@ -11,6 +11,10 @@ $(document).ready(function() {
 
 	$(".track-btn").on("click", function(){
 		console.log($(this).parents('.event').data('id'));
+		var id = $(this).parents('.event').data('id');
 		console.log($(this).parents('.event').data('urlname'));
+		$.get("/events/"+ id , function( data ) {
+		  console.log(data);
+		});
 	});
 });
