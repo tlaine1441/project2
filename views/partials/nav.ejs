@@ -1,0 +1,48 @@
+<!-- <nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded my-nav" style="padding: 10px 60px 5px 60px">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <h1 class="navbar-brand" id="my-brand">GATHR</h1>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    </ul>
+   		<a class="nav-item nav-link link-color" href="#" style="margin-top: -8px">My Events</a>
+        <a class="nav-item nav-link link-color" href="#" style="margin-top: -8px">Meet Ups</a>
+
+  </div>
+</nav> -->
+
+<nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded my-nav">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+   <h1 class="navbar-brand" id="my-brand">GATHR</h1>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto">
+     <% if (currentUser) {%>
+      <li class="nav-item active">
+        <a class="nav-link" id="active" href="#">Meetups <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">My Events</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= currentUser.local.email %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/logout">Logout</a>
+        </div>
+      </li>
+      <% } else { %>
+         <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item pipe"> <span class="nav-link pipe">|</span> </li>
+           <li class="nav-item">
+          <a class="nav-link" href="/signup">Sign Up</a>
+          </li>
+        <% } %>
+    </ul>
+  </div>
+</nav>

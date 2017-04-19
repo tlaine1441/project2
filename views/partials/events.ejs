@@ -1,0 +1,56 @@
+
+
+<div class="bg"></div>
+<div class="jumbotron jumbotron-fluid tron">
+  <div class="container">
+    <h1 class="display-1 font-weight-bold grey">Tech Meetups</h1>
+    <p class="lead grey">Checkout all the cool meetups going on in town.</p>
+  </div>
+</div>
+<div id="startchange"></div>
+</div>
+  <div class="container">
+    <% events.forEach(function(event){ %>
+    	<div class="card card-shadow event" data-id="<%=event.id%>" data-urlname="<%=event.urlname%>" style="margin-bottom: 20px">
+    	
+    	<h4 class="card-header event-name-header"><%= event.name %></h4>
+    	  <div class="card-block">
+    	  <div class="row">
+    	  	<div class="col">
+			<h6 class="card-subtitle mb-2 text-muted"><%= event.time %></h6>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-3">
+			<h4 class="card-text">Status</h4>
+			<p class="text-success"><%= event.status %></p>
+			</div>
+			<div class="col-3">
+			<h4 class="card-text">City</h4>
+			<p class="card-text"><%= event.city %></p>
+			</div>
+			<div class="col-6">
+			<h4 class="card-text">Group</h4>
+			<p class="card-text"><%= event.group %></p>
+			</div>
+    	  </div>
+    	  </div>
+    	  <div class="card-footer card-outline-secondary">
+    	  <div class="row">
+    	  <div class="col-9" style="padding-top: 5px;">
+    	     <small class="text-muted"><span class="text-info">Last updated</span> 3 mins ago</small>
+    	     </div>
+    	     <div class=col-3">
+    	     	<div class="row">
+    	     	<div class="col-9">
+    	     	</div>
+    	     	<div class="col-3">
+    	      <button type="button" class="btn btn-secondary track-btn track-btn">Track Event</button>
+    	      </div>
+    	      </div>
+    	      </div>
+    	      </div>
+    	   </div>
+    	</div>
+	<% }); %>
+</div>
