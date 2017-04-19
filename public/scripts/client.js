@@ -16,5 +16,8 @@ $(document).ready(function() {
 		$.get("/events/"+ id , function( data ) {
 		  console.log(data);
 		});
+		$.post( "/events/"+ id, function( data ) {
+		  console.log( "post: " + data );
+		});
 	});
 });

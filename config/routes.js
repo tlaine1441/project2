@@ -33,6 +33,7 @@ router.route('/')
 
 router.route('/events/:id')
   .get(authenticatedUser, eventControllers.eventIdGet)
+  .post(authenticatedUser, eventControllers.eventIdPost);
 
 router.route('/events')
   .get(authenticatedUser, eventControllers.eventGet)

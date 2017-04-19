@@ -1,12 +1,14 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
-var Event = mongoose.Schema({
+
+var EventSchema = mongoose.Schema({
 	name: String,
 	time: String,
 	status: String,
 	group: String,
 	id: String,
-	active: Boolean
+	active: Boolean,
+	urlname: String
 });
 
-module.exports = mongoose.model('Event', Event);
+module.exports = mongoose.model('Event', EventSchema);
