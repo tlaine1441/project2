@@ -44,6 +44,15 @@
 	color: #fff;
 }
 
+.invite-btn-color {
+	background: #4CFFE8;
+	color: #333;
+}
+
+.pink{ 
+	color: #F2385A;
+}
+
 #active {
 	color: #F2385A;
 }
@@ -79,7 +88,7 @@
   top:0;
   left:0;
   z-index: -1;
-  opacity: .65;
+  /*opacity: .65;*/
 }
 
 .jumbotron {
@@ -88,6 +97,16 @@
   text-shadow: #444 0 1px 1px;
   background:transparent;
 }
+
+.sidebar {
+	height: 400px;
+}
+
+/*.fixed {
+	position: fixed;
+	top: 0;
+	width: inherit;
+}*/
 
 
 /*.event-heading {

@@ -17,5 +17,17 @@ $(document).ready(function() {
 		  console.log( "post: " + data );
 		});
 	});
+
+    // var sidebar = $('.sidebar');
+    // var top = sidebar.offset().top - parseFloat(sidebar.css('margin-top'));
+
+    // $(window).scroll(function (event) {
+    //   var y = $(this).scrollTop();
+    //   if (y >= top) {
+    //     sidebar.addClass('fixed');
+    //   } else {
+    //     sidebar.removeClass('fixed');
+    //   }
+    // });
 	
 });
