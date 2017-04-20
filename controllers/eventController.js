@@ -22,9 +22,9 @@ var eventIdGet = function(req, res) {
 
 var eventIdPost = function(req, res) {
 	db.User.findOne({_id: req.user._id}, function(err, user) {
-		console.log("user: " + user);
+		//console.log("user: " + user);
 		db.Event.findOne({id: req.params.id}, function(err, event){
-			console.log("event found: " + event.time);
+			//console.log("event found: " + event.time);
 			var eventObj = {
 				name: event.name,
 				time: event.time,
@@ -34,11 +34,23 @@ var eventIdPost = function(req, res) {
 				urlname: event.urlname,
 				active: false
 			}
+			var found = false;
+			user.events.forEach(function(event){
+				if(event.id === eventObj.id){
+					console.log("found");
+					found = true;
+				} else {
 
-			user.events.push(eventObj);
-			user.save(function (err) {
-			  if(err) {console.error('ERROR!' + err);}
+				}
 			});
+			if(!found){
+				user.events.push(eventObj);
+				console.log("added");
+				user.save(function (err) {
+				  if(err) {console.error('ERROR!' + err);}
+				});
+			}
+			
 		});
 	});
 }
