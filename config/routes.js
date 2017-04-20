@@ -38,12 +38,15 @@ router.route('/events/:id')
 router.route('/events')
   .get(authenticatedUser, eventControllers.eventGet)
 
+  router.route('/myevents')
+  .get(authenticatedUser, eventControllers.myEventGet)
+
 router.route('/signup')
   .get(usersController.getSignup)
   .post(usersController.postSignup)
 
 router.route('/login')
-  .get(usersController.getLogin)
+  .get(authenticatedUser, usersController.getLogin)
   .post(usersController.postLogin)
 
 router.route("/logout")

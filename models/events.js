@@ -8,7 +8,8 @@ var EventSchema = mongoose.Schema({
 	group: String,
 	id: String,
 	active: Boolean,
-	urlname: String
+	urlname: String,
+	updated: String
 });
 
 module.exports = mongoose.model('Event', EventSchema);

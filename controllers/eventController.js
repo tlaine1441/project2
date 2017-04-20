@@ -11,6 +11,15 @@ var eventGet = function(req, res) {
 	});
 }
 
+var myEventGet = function(req, res) {
+	db.Event.find({}, function(err, events) {
+		db.User.findOne({_id: req.user._id}, function(err, user) {
+			//console.log(user.events);
+			res.render('myEvents', {events: events, userEvents: user.events});
+		});
+	});
+}
+
 var eventIdGet = function(req, res) {
 	//console.log(req.params.id);
 	db.Event.findOne({id: req.params.id}, function(err, event) {
@@ -60,3 +69,4 @@ var eventIdPost = function(req, res) {
 module.exports.eventGet = eventGet;
 module.exports.eventIdGet = eventIdGet;
 module.exports.eventIdPost = eventIdPost;
+module.exports.myEventGet = myEventGet;

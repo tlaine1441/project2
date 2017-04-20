@@ -21,7 +21,10 @@ function getSignup(request, response, next) {
 
 // GET /login
 function getLogin(request, response, next) { 
-	response.render('login.ejs', { message: request.flash('loginMessage')});
+   if (request.isAuthenticated()) {
+      return response.redirect('/events');
+  }
+  response.render('login.ejs', { message: request.flash('loginMessage')});
 }
 
 // POST /login 

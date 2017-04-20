@@ -47,6 +47,7 @@ request("https://api.meetup.com/recommended/events?key=" + process.env.API_KEY +
 	//res.json(body);
 	body.forEach(function(event){
 		var date = new Date(event.time);
+		var updateTime = new Date(event.updated);
 		var eventObj = {
 			name: event.name,
 			time: date,
@@ -54,7 +55,8 @@ request("https://api.meetup.com/recommended/events?key=" + process.env.API_KEY +
 			group: event.group.name,
 			id: event.id,
 			urlname: event.group.urlname,
-			active: false
+			active: false,
+			updated: updateTime
 		}
 		if (event.venue != null){
 			eventObj.city = event.venue.city;
