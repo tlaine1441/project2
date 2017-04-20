@@ -4,7 +4,23 @@ var db = require("../models");
 
 var eventGet = function(req, res) {
 	db.Event.find({}, function(err, events) {
-	//console.log(events);
+		// db.User.findOne({_id: req.user._id}, function(err, user) {
+		// 	//console.log(user.events);
+		// 	var obj= {
+		// 		tracked: false
+		// 	}
+		// 	events.forEach(function(event){
+		// 		user.events.forEach(function(userEvent){
+		// 			if(userEvent.id === event.id){
+		// 				obj.tracked = true;
+		// 			}
+		// 			console.log(obj.tracked);
+		// 		});
+		// 		// user.save(function (err) {
+		// 		//   if(err) {console.error('ERROR!' + err);}
+		// 		// });
+		// 	});
+		// });
 	res.render('index', {events: events});
 	});
 }

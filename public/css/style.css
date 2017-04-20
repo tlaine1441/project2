@@ -41,6 +41,7 @@
 
 .track-btn {
 	background: #F2385A;
+	color: #fff;
 }
 
 #active {
@@ -70,8 +71,8 @@
 
 
 .bg {
-  background: url('/images/event-bg.jpg') no-repeat center center;
-  background-size: cover;
+  /*background: url('/images/event-bg.jpg') no-repeat center center;
+  background-size: cover;*/
   position: fixed;
   width: 100%;
   height: 400px; 

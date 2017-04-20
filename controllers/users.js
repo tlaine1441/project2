@@ -1,5 +1,7 @@
 var passport = require("passport");
 
+var db = require("../models");
+
 // GET /signup
 function getSignup(request, response, next) {
 	console.log("in getSignup");
@@ -42,6 +44,8 @@ function getLogout(request, response, next) {
 function secret(request, response){
 	response.json({message: "fuck you"});
 }
+
+// Restricted page
 
 
 module.exports = {

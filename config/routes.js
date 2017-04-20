@@ -38,7 +38,6 @@ router.route('/events/:id')
 router.route('/events')
   .get(authenticatedUser, eventControllers.eventGet)
 
-
 router.route('/signup')
   .get(usersController.getSignup)
   .post(usersController.postSignup)

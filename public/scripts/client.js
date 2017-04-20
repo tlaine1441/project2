@@ -12,11 +12,10 @@ $(document).ready(function() {
 		console.log($(this).parents('.event').data('id'));
 		var id = $(this).parents('.event').data('id');
 		console.log($(this).parents('.event').data('urlname'));
-		// $.get("/events/"+ id , function( data ) {
-		//   console.log("Front data");
-		// });
+		
 		$.post( "/events/"+ id, function( data ) {
 		  console.log( "post: " + data );
 		});
 	});
+	
 });
