@@ -26,6 +26,18 @@ $(document).ready(function() {
 		$.post( "/invite", {id:id},function( data ) {
 		});
 	});
+
+	$(".check").on("click", function(){
+		var id = $(this).parents('.invite-item').data('id');
+		$.post( "/acceptInvite", {id:id}, function( data ) {
+		});
+	});
+
+	$(".deny").on("click", function(){
+		var id = $(this).parents('.invite-item').data('id');
+		$.post( "/denyInvite", {id:id}, function( data ) {
+		});
+	});
     // var sidebar = $('.sidebar');
     // var top = sidebar.offset().top - parseFloat(sidebar.css('margin-top'));
 

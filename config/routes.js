@@ -44,6 +44,12 @@ router.route('/myevents')
 router.route('/invite')
   .post(authenticatedUser, eventControllers.invEventPost)
 
+router.route('/acceptInvite')
+  .post(authenticatedUser, eventControllers.acceptInvPost)
+
+router.route('/denyInvite')
+  .post(authenticatedUser, eventControllers.denyInvPost)
+
 router.route('/signup')
   .get(usersController.getSignup)
   .post(usersController.postSignup)

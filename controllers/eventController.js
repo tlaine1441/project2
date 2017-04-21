@@ -104,9 +104,20 @@ var invEventPost = function(req, res) {
 		});
 	});
 }
+
+var acceptInvPost = function(req, res){
+	console.log("accpet" + req.body.id);
+}
+
+var denyInvPost = function(req, res){
+	console.log("deny" + req.body.id);
+}
+
+
 module.exports.eventGet = eventGet;
 module.exports.eventIdGet = eventIdGet;
 module.exports.eventIdPost = eventIdPost;
 module.exports.myEventGet = myEventGet;
 module.exports.invEventPost = invEventPost;
-
+module.exports.acceptInvPost = acceptInvPost;
+module.exports.denyInvPost = denyInvPost;
