@@ -31,12 +31,20 @@ $(document).ready(function() {
 		var id = $(this).parents('.invite-item').data('id');
 		$.post( "/acceptInvite", {id:id}, function( data ) {
 		});
+		$(this).parents('.invite-item').remove();
+		var inviteCount = parseInt($("#invite-count").text());
+		inviteCount--;
+		if(inviteCount < 0){
+			inviteCount = 0;
+		}
+		$("#invite-count").text(inviteCount);
 	});
 
 	$(".deny").on("click", function(){
 		var id = $(this).parents('.invite-item').data('id');
 		$.post( "/denyInvite", {id:id}, function( data ) {
 		});
+		console.log($(this).parents('.invite-item'));
 	});
     // var sidebar = $('.sidebar');
     // var top = sidebar.offset().top - parseFloat(sidebar.css('margin-top'));

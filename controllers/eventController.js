@@ -106,7 +106,56 @@ var invEventPost = function(req, res) {
 }
 
 var acceptInvPost = function(req, res){
-	console.log("accpet" + req.body.id);
+	var id = req.body.id;
+	db.User.findOne({_id: req.user._id}, function(err, user) {
+		db.Event.findOne({id: id}, function(err, event){
+			//console.log("event found: " + event);
+			var eventObj = {
+				name: event.name,
+				time: event.time,
+				status: event.status,
+				group: event.group,
+				id: event.id,
+				urlname: event.urlname,
+				active: false
+			}
+			var found = false;
+			user.events.forEach(function(event){
+				if(event.id === eventObj.id){
+					console.log("found");
+					found = true;
+				} else {
+
+				}
+			});
+			if(!found){
+				user.events.push(eventObj);
+				console.log("added");
+				user.save(function (err) {
+				  if(err) {console.error('ERROR!' + err);}
+				});
+			}	
+
+			user.invites.forEach(function(invite, index){
+				if(id === invite.id){
+					console.log(invite.name);
+					console.log("found event at: " + index);
+					user.invites.splice(index, 1);
+					console.log(user.invites);
+					user.save(function (err) {
+						if(err) {console.error('ERROR!' + err);}
+						console.log("removed?");
+					});
+				}
+			});
+
+
+
+			
+			
+		});
+	});
+
 }
 
 var denyInvPost = function(req, res){
