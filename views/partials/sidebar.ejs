@@ -9,7 +9,7 @@
     </div>
     </div>
   </div>
-  <ul class="list-group list-group-flush">
+  <ul class="list-group list-group-flush invite-list">
     <%invites.forEach(function(invite){%>
     	<% var inviteName = invite.name.toProperCase();%>
     	<%if(inviteName.length > 30) {%>
@@ -36,7 +36,10 @@
     	<%}%>
     <%});%>
   </ul>
-  <div class="card-block">
+  <div class="card-block bottom-block">
+   <%if(invites.length === 0){%>
+  	<p class="no-invite">No Invites...</p>
+  <%}%>
   </div>
 </div>
 </div>

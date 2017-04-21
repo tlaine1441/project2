@@ -3,7 +3,7 @@
   };%>
 
 <div class="bg"></div>
-<div class="jumbotron jumbotron-fluid tron">
+<div class="jumbotron jumbotron-fluid tron" style="background: #fff;">
   <div class="container">
     <h1 class="display-1 font-weight-bold grey">My Meetups</h1>
     <p class="lead grey">Heres the meetups you are going too soon.</p>
@@ -13,7 +13,7 @@
 </div>
   <div class="container">
   <div class="row">
-    <div class="col">
+    <div id="event-root" class="col">
     <% userEvents.forEach(function(event){ %>
     	<div class="card card-shadow event" data-id="<%=event.id%>" data-urlname="<%=event.urlname%>" style="margin-bottom: 20px">
     	<h4 class="card-header event-name-header"><%= event.name %></h4>

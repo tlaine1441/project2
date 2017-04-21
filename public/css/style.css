@@ -80,7 +80,7 @@
 
 
 .bg {
-  /*background: url('/images/event-bg.jpg') no-repeat center center;
+  /*background: url('/images/event-bg-crop.jpg') no-repeat center center;
   background-size: cover;*/
   position: fixed;
   width: 100%;
@@ -96,10 +96,13 @@
   color: white;
   text-shadow: #444 0 1px 1px;
   background:transparent;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 60px;
 }
 
 .sidebar {
 	height: 400px;
+	overflow: scroll;
 }
 
 .invites {
@@ -114,7 +117,11 @@
 
 .invite-item {
 	font-size: 1em;
-	height: 75px;
+	min-height: 100px;
+}
+
+.invite-list {
+	overflow: scroll;
 }
 
 .deny {
@@ -135,6 +142,21 @@
 	cursor: pointer;
 }
 
+.footer {
+	background: #333;
+}
+
+.footer-brand {
+	color: #4CFFE8;
+	text-align: center; 
+	margin-top: 15px;
+}
+
+.no-invite {
+	font-size: 30px;
+	color: #ddd;
+	text-align: center;
+}
 /*.fixed {
 	position: fixed;
 	top: 0;

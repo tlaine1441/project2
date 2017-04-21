@@ -148,10 +148,6 @@ var acceptInvPost = function(req, res){
 					});
 				}
 			});
-
-
-
-			
 			
 		});
 	});
