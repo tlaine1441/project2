@@ -19,13 +19,6 @@ function authenticatedUser(req, res, next) {
   res.redirect('/');
 }
 
-// if(authenticatedUser) {
-//   router.route('/')
-//   .get(authenticatedUser, eventControllers.eventGet)
-// } else{
-//   router.route('/')
-//   .get(staticsController.home)
-// }
 
 router.route('/')
   .get(usersController.getLogin)
