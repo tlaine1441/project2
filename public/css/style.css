@@ -102,6 +102,23 @@
 	height: 400px;
 }
 
+.invites {
+	padding-top: 2px;
+}
+
+.sidebar-header {
+	padding: 15px 25px 7px 25px;
+	background: #F2385A;
+	color: #fff;
+}
+
+.invite-item {
+	font-size: 1em;
+}
+
+.deny {
+	margin-left: 10px;
+}
 /*.fixed {
 	position: fixed;
 	top: 0;

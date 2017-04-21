@@ -1,4 +1,6 @@
-
+<% String.prototype.toProperCase = function () {
+    return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  };%>
 
 <div class="bg"></div>
 <div class="jumbotron jumbotron-fluid tron">
@@ -14,7 +16,6 @@
     <div class="col">
     <% userEvents.forEach(function(event){ %>
     	<div class="card card-shadow event" data-id="<%=event.id%>" data-urlname="<%=event.urlname%>" style="margin-bottom: 20px">
-    	
     	<h4 class="card-header event-name-header"><%= event.name %></h4>
     	  <div class="card-block">
     	  <div class="row">
@@ -69,11 +70,6 @@
 	<% }); %>
     </div>
     <div class="col-3">
-    <div class="card sidebar">
-      <h3 class="card-header">Squad</h3>
-      <div class="card-block">
-      </div>
-    </div>
-    </div>
+    <% include ./sidebar.ejs %>
     </div>
 </div>

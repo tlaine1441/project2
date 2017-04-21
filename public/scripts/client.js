@@ -18,6 +18,14 @@ $(document).ready(function() {
 		});
 	});
 
+	$(".invite-btn").on("click", function(){
+		console.log($(this).parents('.event').data('id'));
+		var id = $(this).parents('.event').data('id');
+		console.log($(this).parents('.event').data('urlname'));
+		$(this).removeClass("track-btn-color");
+		$.post( "/invite", {id:id},function( data ) {
+		});
+	});
     // var sidebar = $('.sidebar');
     // var top = sidebar.offset().top - parseFloat(sidebar.css('margin-top'));
 

@@ -9,7 +9,8 @@ var User = mongoose.Schema({
     password     : String,
   },
   squad: [String],
-  events: [Event.schema]
+  events: [Event.schema],
+  invites: [Event.schema]
 });
 
 User.methods.encrypt = function (password) {

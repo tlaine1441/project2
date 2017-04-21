@@ -1,0 +1,26 @@
+<div class="card card-shadow sidebar " style="width: 20rem;">
+ <div class="card-header sidebar-header">
+    <div class="row">
+    <div class="col">
+    <h5 class="">Squad</h5>
+    </div>
+    <div class="col">
+    <h6 class="float-right invites"><%= invites.length%> Invites</h6>
+    </div>
+    </div>
+  </div>
+  <ul class="list-group list-group-flush">
+    <%invites.forEach(function(invite){%>
+    	<% var inviteName = invite.name.toProperCase();%>
+    	<%if(inviteName.length > 30) {%>
+    		<%var shortName = inviteName.substring(0, 30) + "...";%>
+    		<li class="list-group-item invite-item"><%=shortName%><i class="fa fa-times deny" aria-hidden="true"></i></li>
+    	<%}else {%>
+    		<li class="list-group-item invite-item"><%=inviteName%><i class="fa fa-times deny" aria-hidden="true"></i></li>
+    	<%}%>
+    <%});%>
+  </ul>
+  <div class="card-block">
+  </div>
+</div>
+</div>
