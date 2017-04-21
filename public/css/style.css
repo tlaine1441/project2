@@ -114,11 +114,27 @@
 
 .invite-item {
 	font-size: 1em;
+	height: 75px;
 }
 
 .deny {
-	margin-left: 10px;
+	float: right;
+	color: #F22C49;
 }
+
+.check {
+	float: left;
+	color: #4CFFE8;
+}
+
+.invite-options-col {
+	padding: 0;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
 /*.fixed {
 	position: fixed;
 	top: 0;
