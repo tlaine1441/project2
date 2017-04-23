@@ -15,16 +15,20 @@ var db = require('./models');
 
 // use morgan logger
 app.use(morgan('dev')); 
-//
+// use cookie parser
 app.use(cookieParser());
+// use cookie parser
 app.use(bodyParser()); 
 
+// Set ejs view engine
 app.set('views', './views');
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
+// serve public front end files from public
 app.use(express.static(__dirname + '/public'));
 
+// passport use's
 app.use(session({ secret: 'GATHR' })); 
 app.use(passport.initialize());
 app.use(passport.session()); 
@@ -32,47 +36,59 @@ app.use(flash());
 
 require('./config/passport')(passport);
 
+// set current user to res.locals
 app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
   next();
 });
 
+// require routes from routes config
 var routes = require('./config/routes');
 app.use(routes);
 
+// uodate database from meetup api every hour
 setInterval(function(){
-request("https://api.meetup.com/recommended/events?key=" + process.env.API_KEY + "&topic_category=tech&radius=5", function (error, response, body) {
-	var body = JSON.parse(body);
-	body.forEach(function(event){
-		var date = new Date(event.time);
-		var updateTime = new Date(event.updated);
-		var eventObj = {
-			name: event.name,
-			time: date,
-			status: event.status,
-			group: event.group.name,
-			id: event.id,
-			urlname: event.group.urlname,
-			active: false,
-			updated: updateTime
-		}
-		if (event.venue != null){
-			eventObj.city = event.venue.city;
-		} else {
-			eventObj.city = "N/A";
-		}	
-	  	db.Event.findOne({id: eventObj.id}, function(err, dbEvent) {
-	  		if(dbEvent) {
-				console.log("found");
-	  		} else {
-	  			db.Event.create(eventObj, function(err, event){
-			    if (err) { return console.log('ERROR', err); }
-			 	console.log("sucess: " + event);
-			  });
-	  		}
-	  	});
+	// request data from api
+	request("https://api.meetup.com/recommended/events?key=" + process.env.API_KEY + "&topic_category=tech&radius=5", function (error, response, body) {
+		var body = JSON.parse(body);
+		//loop through reponse body to get each event
+		body.forEach(function(event){
+			// parse time from unix
+			var date = new Date(event.time);
+			var updateTime = new Date(event.updated);
+			// create smaller object with necessary data
+			var eventObj = {
+				name: event.name,
+				time: date,
+				status: event.status,
+				group: event.group.name,
+				id: event.id,
+				urlname: event.group.urlname,
+				active: false,
+				updated: updateTime
+			}
+			// test if venue is null and set na if true. 
+			if (event.venue != null){
+				eventObj.city = event.venue.city;
+			} else {
+				eventObj.city = "N/A";
+			}	
+			// validate and add if the event is not already databased
+		  	db.Event.findOne({id: eventObj.id}, function(err, dbEvent) {
+		  		if(dbEvent) {
+					console.log("found");
+		  		} else {
+		  			db.Event.create(eventObj, function(err, event){
+				    if (err) { return console.log('ERROR', err); }
+				 	console.log("sucess: " + event);
+				  });
+		  		}
+		  	});
+		});
 	});
-});
 }, 3600000); 
 
+// set port
 app.listen(3000);
+
+
