@@ -157,19 +157,32 @@
 	color: #ddd;
 	text-align: center;
 }
-/*.fixed {
-	position: fixed;
-	top: 0;
-	width: inherit;
-}*/
 
-
-/*.event-heading {
-	margin-bottom: 20px; 
-	margin-top: 125px;
-	color: #333;
+.nav-item {
+	margin-left: 20px;
 }
 
-.card-shadow {
-	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}*/
+.badge-link{
+	padding: 5px;
+	font-size: 1rem;
+}
+
+.fa-stack[data-count]:after {
+  position: absolute;
+  right: 0%;
+  top: 1%;
+  content: attr(data-count);
+  font-size: 30%;
+  padding: .6em;
+  border-radius: 999px;
+  line-height: .75em;
+  color: white;
+  background: rgba(255, 0, 0, 0.85);
+  text-align: center;
+  min-width: 2em;
+  font-weight: bold;
+}
+
+.bell {
+	color: rgba(0,0,0,.5);
+}

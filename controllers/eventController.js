@@ -6,7 +6,7 @@ var eventGet = function(req, res) {
 	db.Event.find({}, function(err, events) {
 		db.User.findOne({_id: req.user._id}, function(err, user) {
 			//console.log(user.events);
-			res.render('index', {events: events, userEvents: user.events});
+			res.render('index', {events: events, userEvents: user.events, invites: user.invites});
 		});
 	});
 }
@@ -155,7 +155,23 @@ var acceptInvPost = function(req, res){
 }
 
 var denyInvPost = function(req, res){
-	console.log("deny" + req.body.id);
+	//console.log("deny" + req.body.id);
+	var id = req.body.id;
+	db.User.findOne({_id: req.user._id}, function(err, user) {
+		//console.log(user.invites);
+			user.invites.forEach(function(invite, index){
+				if(id === invite.id){
+					console.log(invite.name);
+					console.log("found event at: " + index);
+					user.invites.splice(index, 1);
+					console.log(user.invites);
+					user.save(function (err) {
+						if(err) {console.error('ERROR!' + err);}
+						console.log("removed?");
+					});
+				}
+			});
+	});
 }
 
 

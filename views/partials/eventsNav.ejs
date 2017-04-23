@@ -12,6 +12,7 @@
   </div>
 </nav> -->
 
+
 <nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded my-nav">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -26,7 +27,9 @@
         <a class="nav-link" id="active" href="/events">Meetups <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/myevents">My Events</a>
+        <a class="nav-link badge-link" href="/myevents">My Events <span class="fa-stack fa-l has-badge" data-count="<%=invites.length%>">
+         <i class="fa fa-bell fa-stack-1x"></i>
+         </span></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

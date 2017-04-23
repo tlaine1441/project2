@@ -6,7 +6,6 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var passport = require("passport");
 var usersController = require('../controllers/users');
-var staticsController = require('../controllers/statics');
 var eventControllers = require('../controllers/eventController');
 
 function authenticatedUser(req, res, next) {

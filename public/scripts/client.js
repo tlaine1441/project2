@@ -19,12 +19,13 @@ $(document).ready(function() {
 	});
 
 	$(".invite-btn").on("click", function(){
+		var button =  '<button type="button" class="btn btn-secondary invite-btn">Invite Sent</button>';
 		console.log($(this).parents('.event').data('id'));
 		var id = $(this).parents('.event').data('id');
-		console.log($(this).parents('.event').data('urlname'));
-		$(this).removeClass("track-btn-color");
+		console.log($(this)[0]);
 		$.post( "/invite", {id:id},function( data ) {
-		});
+		})
+		$(this).text("Invite Sent...").removeClass("btn-info").addClass("btn-secondary");
 	});
 
 	$(".check").on("click", function(){
@@ -51,7 +52,16 @@ $(document).ready(function() {
 		var id = $(this).parents('.invite-item').data('id');
 		$.post( "/denyInvite", {id:id}, function( data ) {
 		});
-		console.log($(this).parents('.invite-item'));
+		$(this).parents('.invite-item').remove();
+		var inviteCount = parseInt($("#invite-count").text());
+		inviteCount--;
+		if(inviteCount < 0){
+			inviteCount = 0;
+		}
+		$("#invite-count").text(inviteCount);
+		if(inviteCount === 0){
+			$(".bottom-block").append('<p class="no-invite">No Invites...</p>');
+		}
 	});
     // var sidebar = $('.sidebar');
     // var top = sidebar.offset().top - parseFloat(sidebar.css('margin-top'));
@@ -64,6 +74,10 @@ $(document).ready(function() {
     //     sidebar.removeClass('fixed');
     //   }
     // });
+
+    $("body").tooltip({
+    	selector: '[data-toggle="tooltip"]'
+	});
 	
 });
 
