@@ -1,13 +1,14 @@
 // Necessary packages
-var express      = require('express');
-var app          = express();
-var mongoose     = require('mongoose');
-var passport     = require('passport');
-var flash        = require('connect-flash');
-var morgan       = require('morgan');
+var express = require('express');
+var app  = express();
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash = require('connect-flash');
+var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var session      = require('express-session');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var cron = require('node-cron');
 var request = require('request');
 
 // reqiures all models
@@ -47,36 +48,58 @@ var routes = require('./config/routes');
 app.use(routes);
 
 // uodate database from meetup api every hour
-setInterval(function(){
+cron.schedule('*/30 * * * *', function(){
+
 	// request data from api
 	request("https://api.meetup.com/recommended/events?key=" + process.env.API_KEY + "&topic_category=tech&radius=5", function (error, response, body) {
 		var body = JSON.parse(body);
+
 		//loop through reponse body to get each event
 		body.forEach(function(event){
+
 			// parse time from unix
-			var date = new Date(event.time);
+			var date = new Date(event.time); 
 			var updateTime = new Date(event.updated);
+			var options = {  
+			    weekday: "long", year: "numeric", month: "short",  
+			    day: "numeric", hour: "2-digit", minute: "2-digit"  
+			}; 
+			var formatedDate = (date.toLocaleTimeString("en-us", options));
+			var formatedUpdate = (updateTime.toLocaleTimeString("en-us", options));
+
+
 			// create smaller object with necessary data
 			var eventObj = {
 				name: event.name,
-				time: date,
+				time: formatedDate,
 				status: event.status,
 				group: event.group.name,
 				id: event.id,
 				urlname: event.group.urlname,
 				active: false,
-				updated: updateTime
+				updated: formatedUpdate
 			}
+
 			// test if venue is null and set na if true. 
 			if (event.venue != null){
 				eventObj.city = event.venue.city;
 			} else {
 				eventObj.city = "N/A";
 			}	
+			var today = new Date();
+			var utcToday = today.toJSON().slice(0,10).replace(/-/g,'/');
+
+			// if(utcToday === utcDate) {
+			// 	console.log(true);
+			// }
+			 //console.log(curenttime);
+			// console.log(utcToday);
 			// validate and add if the event is not already databased
 		  	db.Event.findOne({id: eventObj.id}, function(err, dbEvent) {
 		  		if(dbEvent) {
 					console.log("found");
+					// var dbUtc = dbEvent.time.slice(0,10).replace(/-/g,'/');;
+					// console.log(dbUtc);
 		  		} else {
 		  			db.Event.create(eventObj, function(err, event){
 				    if (err) { return console.log('ERROR', err); }
@@ -86,7 +109,7 @@ setInterval(function(){
 		  	});
 		});
 	});
-}, 3600000); 
+}); 
 
 // set port
 app.listen(3000);

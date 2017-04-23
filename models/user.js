@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
 var Event = require('./events.js');
+var Invite = require('./invites.js');
 
 var User = mongoose.Schema({
   local : {
@@ -10,7 +11,7 @@ var User = mongoose.Schema({
   },
   squad: [String],
   events: [Event.schema],
-  invites: [Event.schema]
+  invites: [Invite.schema]
 });
 
 User.methods.encrypt = function (password) {

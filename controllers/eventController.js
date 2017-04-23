@@ -5,6 +5,7 @@ var db = require("../models");
 var eventGet = function(req, res) {
 	db.Event.find({}, function(err, events) {
 		db.User.findOne({_id: req.user._id}, function(err, user) {
+			//console.log(user.invites[5].invitee);
 			//console.log(user.events);
 			res.render('index', {events: events, userEvents: user.events, invites: user.invites});
 		});
@@ -30,6 +31,7 @@ var eventIdPost = function(req, res) {
 			var eventObj = {
 				name: event.name,
 				time: event.time,
+				updated: event.updated,
 				status: event.status,
 				group: event.group,
 				id: event.id,
@@ -70,16 +72,18 @@ var invEventPost = function(req, res) {
 	var id = req.body.id;
 	db.Event.findOne({id:id}, function(err, event) {
 		if(err){console.log(err);}
-		var eventObj = {
+		db.User.findOne({_id: req.user._id}, function(err, user) {
+			var eventObj = {
 			name: event.name,
+			updated: event.updated,
 			time: event.time,
 			status: event.status,
 			group: event.group,
 			id: event.id,
 			urlname: event.urlname,
-			active: false
+			active: false,
+			invitee: user.local.name
 		}
-		db.User.findOne({_id: req.user._id}, function(err, user) {
 			user.squad.forEach(function(squadMemberId){
 				db.User.findOne({_id: squadMemberId}, function(err, foundUser){
 					var found = false;
@@ -113,6 +117,7 @@ var acceptInvPost = function(req, res){
 			var eventObj = {
 				name: event.name,
 				time: event.time,
+				updated: event.updated,
 				status: event.status,
 				group: event.group,
 				id: event.id,

@@ -25,8 +25,9 @@
     		</li>
     	<%}else {%>
     		<li class="list-group-item invite-item"  data-id="<%=invite.id%>">
-    			<div class="col-9">
+    			<div class="col-9 invite-name">
     			<%=inviteName%>
+           <p class="text-muted invitee">Invited by <%=invite.invitee.substring(0, 12)%></p>
     			</div>
     			<div class="col-3 invite-options-col">
     				<i class="fa fa-check check pointer fa-2x" data-toggle="tooltip" data-placement="top" title="Accept Invite" aria-hidden="true"></i>

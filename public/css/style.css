@@ -186,3 +186,11 @@
 .bell {
 	color: rgba(0,0,0,.5);
 }
+
+.invite-name {
+	padding-top: 20px;
+}
+
+.invitee {
+	font-size: .8rem;
+}
