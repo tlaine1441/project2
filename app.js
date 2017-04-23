@@ -86,14 +86,6 @@ cron.schedule('*/30 * * * *', function(){
 			} else {
 				eventObj.city = "N/A";
 			}	
-			var today = new Date();
-			var utcToday = today.toJSON().slice(0,10).replace(/-/g,'/');
-
-			// if(utcToday === utcDate) {
-			// 	console.log(true);
-			// }
-			 //console.log(curenttime);
-			// console.log(utcToday);
 			// validate and add if the event is not already databased
 		  	db.Event.findOne({id: eventObj.id}, function(err, dbEvent) {
 		  		if(dbEvent) {
@@ -112,6 +104,8 @@ cron.schedule('*/30 * * * *', function(){
 }); 
 
 // set port
-app.listen(3000);
+app.listen(process.env.PORT || 3000, function () {
+  console.log('Express server is up and running on http://localhost:3000/');
+});
 
 
