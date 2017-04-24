@@ -9,59 +9,64 @@
 </div>
 <div id="startchange"></div>
 </div>
-  <div class="container">
-    <% events.forEach(function(event){ %>
-    	<div class="card card-shadow event" data-id="<%=event.id%>" data-urlname="<%=event.urlname%>" style="margin-bottom: 20px">
-    	
-    	<h4 class="card-header event-name-header"><%= event.name %></h4>
-    	  <div class="card-block">
-    	  <div class="row">
-    	  	<div class="col">
-			<h6 class="card-subtitle mb-2 text-muted"><%= event.time %></h6>
-			</div>
-			</div>
-			<div class="row">
-			<div class="col-3">
-			<h4 class="card-text">Status</h4>
-			<p class="text-success"><%= event.status %></p>
-			</div>
-			<div class="col-3">
-			<h4 class="card-text">City</h4>
-			<p class="card-text"><%= event.city %></p>
-			</div>
-			<div class="col-6">
-			<h4 class="card-text">Group</h4>
-			<p class="card-text"><%= event.group %></p>
-			</div>
-    	  </div>
-    	  </div>
-    	  <div class="card-footer card-outline-secondary">
-    	  <div class="row">
-    	  <div class="col-9" style="padding-top: 5px;">
-    	     <small class="text-muted"><span class="text-info">Last updated</span> <%=event.updated%></small>
-    	     </div>
-    	     <div class=col-3">
-    	     	<div class="row">
-    	     	<div class="col-9">
-    	     	</div>
-    	     	<div class="col-3">
-                 
-                 <%var found = false;%>
-                <% userEvents.forEach(function(userEvent){%>
-                    <%if(userEvent.id === event.id){%>
-                        <%found = true;%>
-                    <%}%>
-                <%});%>
-                <%if(found){%>
-                    <button type="button" class="btn btn-secondary track-btn">Track Event</button>
-               <%} else {%>
-                    <button type="button" class="btn btn-secondary track-btn-color track-btn">Track Event</button>
-               <% }%>
-    	      </div>
-    	      </div>
-    	      </div>
-    	      </div>
-    	   </div>
-    	</div>
-	<% }); %>
+<div class="container">
+
+  <% events.forEach(function(event) { %>
+    <div class="card card-shadow event" data-id="<%=event.id%>" data-urlname="<%=event.urlname%>" style="margin-bottom: 20px">
+      <h4 class="card-header event-name-header"><%= event.name %></h4>
+      
+      <div class="card-block">
+        <div class="row">
+          <div class="col">
+            <h6 class="card-subtitle mb-2 text-muted"><%= event.time %></h6>
+          </div>
+        </div>
+
+      <div class="row">
+        <div class="col-3">
+          <h4 class="card-text">Status</h4>
+          <p class="text-success"><%= event.status %></p>
+        </div>
+        <div class="col-3">
+          <h4 class="card-text">City</h4>
+          <p class="card-text"><%= event.city %></p>
+        </div>
+        <div class="col-6">
+          <h4 class="card-text">Group</h4>
+          <p class="card-text"><%= event.group %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer card-outline-secondary">
+      <div class="row">
+        <div class="col-9" style="padding-top: 5px;">
+          <small class="text-muted"><span class="text-info">Last updated</span> <%=event.updated%></small>
+        </div>
+        <div class=col-3">
+          <div class="row">
+            <div class="col-9">
+            </div>
+        <div class="col-3">
+        
+        <%var found = false;%>
+        <% userEvents.forEach(function(userEvent){%>
+          <%if(userEvent.id === event.id){%>
+            <%found = true;%>
+          <%}%>
+        <%});%>
+
+        <%if(found){%>
+          <button type="button" class="btn btn-secondary track-btn">Track Event</button>
+        <%} else {%>
+
+        <button type="button" class="btn btn-secondary track-btn-color track-btn">Track Event</button>
+      <% }%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% }); %>
 </div>

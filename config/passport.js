@@ -1,19 +1,27 @@
+// set up passport local stratagy
 var LocalStrategy = require('passport-local').Strategy;
+
+// require user models
 var User = require('../models/user');
 
+// export callback function takes passport as argument
 module.exports = function(passport) {
 
+	// serializeUser
 	passport.serializeUser(function(user, callback){
 		console.log("serializeUser");
 		callback(null, user.id);
 	});
 
+	// deserializeUser
 	passport.deserializeUser(function(id, callback){
 		console.log("deserializeUser");
 		User.findById(id, function(err, user) {
 			callback(err, user);
 		});
 	});
+
+	// define local statagy
 	passport.use('local-signup', new LocalStrategy({
      usernameField : 'email',
      passwordField : 'password',

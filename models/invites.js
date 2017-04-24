@@ -1,6 +1,7 @@
+// require mongoose
 var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt-nodejs');
 
+// create invite schema
 var InviteSchema = mongoose.Schema({
 	name: String,
 	time: String,
@@ -13,4 +14,5 @@ var InviteSchema = mongoose.Schema({
 	invitee: String
 });
 
+// create and export invite model
 module.exports = mongoose.model('Invite', InviteSchema);

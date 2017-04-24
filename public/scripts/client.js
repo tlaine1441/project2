@@ -1,87 +1,125 @@
+// paralax header
 var jumboHeight = $('.jumbotron').outerHeight();
+
 function parallax(){
-    var scrolled = $(window).scrollTop();
-    $('.bg').css('height', (jumboHeight-scrolled) + 'px');
+	var scrolled = $(window).scrollTop();
+	$('.bg').css('height', (jumboHeight-scrolled) + 'px');
 }
 
 $(window).scroll(function(e){
     parallax();
 });
+
+
+// document ready
 $(document).ready(function() {
+
+	// track button event
 	$(".track-btn").on("click", function(){
-		console.log($(this).parents('.event').data('id'));
+		//console.log($(this).parents('.event').data('id'));
+
 		var id = $(this).parents('.event').data('id');
-		console.log($(this).parents('.event').data('urlname'));
+
+		//console.log($(this).parents('.event').data('urlname'));
+
 		$(this).removeClass("track-btn-color");
+
 		$.post( "/events/"+ id, function( data ) {
 		  console.log( "post: " + data );
 		});
+
 	});
 
+	// invite button event
 	$(".invite-btn").on("click", function(){
+
 		var button =  '<button type="button" class="btn btn-secondary invite-btn">Invite Sent</button>';
-		console.log($(this).parents('.event').data('id'));
+
+		//console.log($(this).parents('.event').data('id'));
+
 		var id = $(this).parents('.event').data('id');
-		console.log($(this)[0]);
-		$.post( "/invite", {id:id},function( data ) {
-		})
+
+		//console.log($(this)[0]);
+
+		$.post( "/invite", {id:id},function( data ) {})
+
 		$(this).text("Invite Sent...").removeClass("btn-info").addClass("btn-secondary");
+
 	});
 
+	// accept invite button event
 	$(".check").on("click", function(){
+
 		var id = $(this).parents('.invite-item').data('id');
-		$.post( "/acceptInvite", {id:id}, function( data ) {
-		});
+
+		$.post( "/acceptInvite", {id:id}, function( data ) {});
+
 		$(this).parents('.invite-item').remove();
+
 		var inviteCount = parseInt($("#invite-count").text());
+
 		inviteCount--;
-		if(inviteCount < 0){
+
+		if (inviteCount < 0) {
+
 			inviteCount = 0;
 		}
+
 		$("#invite-count").text(inviteCount);
-		$.get("/events/"+ id, function(data){
-			console.log(data);
+
+		$.get("/events/"+ id, function(data) {
+
+			//console.log(data);
+
 			$("#event-root").append(renderEvent(data));
+
 		});
-		if(inviteCount === 0){
+
+		if (inviteCount === 0) {
 			$(".bottom-block").append('<p class="no-invite">No Invites...</p>');
 		}
+
 	});
 
-	$(".deny").on("click", function(){
+	// deny button event
+	$(".deny").on("click", function() {
+
 		var id = $(this).parents('.invite-item').data('id');
-		$.post( "/denyInvite", {id:id}, function( data ) {
-		});
+
+		$.post( "/denyInvite", {id:id}, function( data ) {});
+
 		$(this).parents('.invite-item').remove();
+
 		var inviteCount = parseInt($("#invite-count").text());
+
 		inviteCount--;
-		if(inviteCount < 0){
+
+		if (inviteCount < 0) {
+
 			inviteCount = 0;
 		}
+
 		$("#invite-count").text(inviteCount);
-		if(inviteCount === 0){
+
+		if(inviteCount === 0) {
+
 			$(".bottom-block").append('<p class="no-invite">No Invites...</p>');
 		}
-	});
-    // var sidebar = $('.sidebar');
-    // var top = sidebar.offset().top - parseFloat(sidebar.css('margin-top'));
 
-    // $(window).scroll(function (event) {
-    //   var y = $(this).scrollTop();
-    //   if (y >= top) {
-    //     sidebar.addClass('fixed');
-    //   } else {
-    //     sidebar.removeClass('fixed');
-    //   }
-    // });
-
-    $("body").tooltip({
-    	selector: '[data-toggle="tooltip"]'
 	});
+
+	// tooltip popup
+    $("body").tooltip(
+    	{
+    		selector: '[data-toggle="tooltip"]'
+    	}
+    );
 	
-});
+}); // end document ready
 
+// render event appends event to my events view when invite is accepted
 function renderEvent(event) {
+
 	var html = '<div class="card card-shadow event" data-id="' +event.id + '" data-urlname="'+ event.urlname + '" style="margin-bottom: 20px">'+
 	'<h4 class="card-header event-name-header">'+ event.name + '</h4>'+
  		'<div class="card-block">'+
@@ -119,10 +157,11 @@ function renderEvent(event) {
  		                    '<button type="button" class="btn btn-secondary track-btn">Track Event</button>'+
  		    	      '</div>'+
  		    	       '</div>'+
- 		    	      '</div>'+
- 		    	      '</div>'+
  		    	   '</div>'+
-    	  
+ 		    	'</div>'+
+ 		    '</div>'+
     	'</div>';
+
    return html;
-}
+
+} // end renderEvent

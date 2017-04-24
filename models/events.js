@@ -1,6 +1,8 @@
-var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt-nodejs');
 
+// require mongoose
+var mongoose = require('mongoose');
+
+// create event schema 
 var EventSchema = mongoose.Schema({
 	name: String,
 	time: String,
@@ -12,4 +14,5 @@ var EventSchema = mongoose.Schema({
 	updated: String
 });
 
+// create model and export event model
 module.exports = mongoose.model('Event', EventSchema);
