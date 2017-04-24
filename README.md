@@ -29,3 +29,8 @@ The idea was to base the data off of the user and event models. The user is the 
 Users can sign up for an account. After signup they may login and from there may choose to track events they are interested in. Users also have the option to invite their squad (a group they wish to attend events with) to the event with them. Because networking is way more fun not alone.
 
 
+## Data Models
+Three main models are used, User, Events and Invites. Events and Invites are embeded data provided to User. 
+
+## Todos
+Working on implementing new features such as a user search to add users and eventually want to convert to angular.
