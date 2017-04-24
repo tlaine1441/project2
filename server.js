@@ -72,6 +72,7 @@ cron.schedule('*/30 * * * *', function(){
 			var eventObj = {
 				name: event.name,
 				time: formatedDate,
+				city: event.city,
 				status: event.status,
 				group: event.group.name,
 				id: event.id,
@@ -86,7 +87,7 @@ cron.schedule('*/30 * * * *', function(){
 			} else {
 				eventObj.city = "N/A";
 			}	
-			
+
 			// validate and add if the event is not already databased
 		  	db.Event.findOne({id: eventObj.id}, function(err, dbEvent) {
 		  		if(dbEvent) {
