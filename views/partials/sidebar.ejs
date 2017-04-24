@@ -14,7 +14,7 @@
     	<% var inviteName = invite.name.toProperCase();%>
     	<%if(inviteName.length > 30) {%>
     		<%var shortName = inviteName.substring(0, 30) + "...";%>
-    		<li class="list-group-item invite-item" data-id="<%=invite.id%>">
+    		<li class="list-group-item invite-item short" data-id="<%=invite.id%>">
     			<div class="col-9">
     			<%=shortName%>
                 <p class="text-muted invitee">Invited by <%=invite.invitee.substring(0, 12)%></p>
