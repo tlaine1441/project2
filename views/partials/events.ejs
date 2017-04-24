@@ -45,21 +45,19 @@
         </div>
         <div class=col">
           <div class="row">
-        <div class="col">
-        
-        <%var found = false;%>
-        <% userEvents.forEach(function(userEvent){%>
-          <%if(userEvent.id === event.id){%>
-            <%found = true;%>
-          <%}%>
-        <%});%>
+            <div class="col">
+              <%var found = false;%>
+              <% userEvents.forEach(function(userEvent){%>
+                <%if(userEvent.id === event.id){%>
+                  <%found = true;%>
+                <%}%>
+              <%});%>
 
-        <%if(found){%>
-          <button type="button" class="btn btn-secondary track-btn">Track Event</button>
-        <%} else {%>
-
-        <button type="button" class="btn btn-secondary track-btn-color track-btn">Track Event</button>
-      <% }%>
+              <%if(found){%>
+                <button type="button" class="btn btn-secondary track-btn">Track Event</button>
+              <%} else {%>
+                <button type="button" class="btn btn-secondary track-btn-color track-btn">Track Event</button>
+              <% }%>
               </div>
             </div>
           </div>
