@@ -29,5 +29,9 @@
     "request": "^2.81.0"
   },
   "author": "gerry Mathe",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.3.0"
+  }
 }
