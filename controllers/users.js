@@ -43,12 +43,7 @@ function getLogout(request, response, next) {
   response.redirect('/');
 }
 
-// Restricted page
-function secret(request, response){
-	response.json({message: "fuck you"});
-}
 
-// Restricted page
 
 
 module.exports = {
