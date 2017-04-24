@@ -34,3 +34,9 @@ Three main models are used, User, Events and Invites. Events and Invites are emb
 
 ## Todos
 Working on implementing new features such as a user search to add users and eventually want to convert to angular.
+
+## Whos is the target user?
+The target is those in the technology world but mainly students in cohorts like us.
+
+## Why does this help?
+As new developers its hard to walk into something you may not be comfortable with to start and having familar faces can go a long way.
