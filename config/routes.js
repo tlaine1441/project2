@@ -30,7 +30,7 @@ function authenticatedUser(req, res, next) {
 }
 
 // index route
-router.route('/')
+router.route('/') // index
   .get(usersController.getLogin)
   .post(usersController.postLogin)
 
@@ -40,7 +40,7 @@ router.route('/events/:id')
   .post(authenticatedUser, eventControllers.eventIdPost);
 
 // all events
-router.route('/events')
+router.route('/events') // index
   .get(authenticatedUser, eventControllers.eventGet)
 
 // user events
