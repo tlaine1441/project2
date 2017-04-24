@@ -48,7 +48,7 @@ var routes = require('./config/routes');
 app.use(routes);
 
 // uodate database from meetup api every hour
-cron.schedule('*/30 * * * *', function(){
+cron.schedule('*/30 * * * * *', function(){
 
 	// request data from api
 	request("https://api.meetup.com/recommended/events?key=" + process.env.API_KEY + "&topic_category=tech&radius=5", function (error, response, body) {
