@@ -6,7 +6,7 @@ Gathr is a platform for tracking and inviting your groups to attend tech meetups
 
 # [Link to my Trell Board](https://trello.com/b/NS1sQqPr/project-2-gathr)
 
-# Link to my Gathr](https://letsgathr.herokuapp.com)
+# [Link to Gathr](https://letsgathr.herokuapp.com)
 
 
 ## Wireframes
